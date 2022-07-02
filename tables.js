@@ -10,44 +10,44 @@
  * 
  */
 /** Holds functionality for the multiplication table */
-(function(){
+(function () {
 	var num1;
 	var num2;
 	var right = 0;
 	var wrong = 0;
-	
+
 	var $the_answer;
 	var $submit;
 	var $score_left;
 	var $score_right;
 	var $math_container;
-	
-	$(document).ready(function(){
+
+	$(document).ready(function () {
 		$the_answer = $("#the_answer");
 		$submit = $("#submit");
 		$score_left = $("#score_left");
 		$score_right = $("#score_right");
 		$math_container = $("#math_container");
-		
+
 		algorithm();
 		$the_answer.focus();
-		
-		$submit.click(function(){
+
+		$submit.click(function () {
 			checkAnswer();
 		});
-		
-		$(window).keypress(function(){
+
+		$(window).keypress(function () {
 			// Capture Enter Key
 			if (event.keyCode == 13) {
 				checkAnswer();
 			}
 		});
 	});
-	
+
 	/**
 	 * Check user input
 	 */
-	function checkAnswer(){
+	function checkAnswer() {
 		if (num1 * num2 == parseInt($the_answer.val())) {
 			algorithm();
 			right++;
@@ -60,25 +60,25 @@
 		$the_answer.val("");
 		$the_answer.focus();
 	}
-	
+
 	/**
 	 * Randomly generate table
 	 */
-	function algorithm(){
-		num1 = Math.floor(Math.random() * 13);
-		num2 = Math.floor(Math.random() * 13);
+	function algorithm() {
+		num1 = Math.floor(Math.random() * (10 - 6) + 6);
+		num2 = Math.floor(Math.random() * (10 - 1) + 1);
 		$math_container.html(num1 + " x " + num2);
 	}
-	
+
 	/**
 	 * Update visual score
 	 * @param {int} 1 for correct, 0 for incorrect
 	 */
-	function updateScore(x){
+	function updateScore(x) {
 		if (x == 1) {
 			$score_left.html("C: " + right);
 		}
-		else 
+		else
 			if (x === 0) {
 				$score_right.html("W: " + wrong);
 			}
