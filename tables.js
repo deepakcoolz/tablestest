@@ -4,23 +4,56 @@
  *              multiplication table skills.
  * Website:     http://ezraezraezra.com/class/woaa/class5/tables
  * 
- * Author:      Ezra Velazquez
+ * Original Author:      Ezra Velazquez
+ * 
  * Website:     http://ezraezraezra.com
  * Date:        October 2011 (Originally developed February 2011)
  * 
  */
 /** Holds functionality for the multiplication table */
+
+var the_stoptest
+
+function startTimer(duration, display) {
+	var timer = duration, minutes, seconds;
+	setInterval(function () {
+		minutes = parseInt(timer / 60, 10);
+		seconds = parseInt(timer % 60, 10);
+
+		minutes = minutes < 10 ? "0" + minutes : minutes;
+		seconds = seconds < 10 ? "0" + seconds : seconds;
+
+		display.textContent = minutes + ":" + seconds;
+
+		if (--timer < 0) {
+			timer = duration;
+		}
+	}, 1000);
+}
+
+window.onload = function () {
+	var seconds = miliseconds / 1000;
+	display = document.querySelector('#time');
+	startTimer(fiveMinutes, display);
+};
+
+
 (function () {
 	var num1;
 	var num2;
+
 	var right = 0;
 	var wrong = 0;
+	var min = 6;
+	var max = 9;
+	var miliseconds = 60000
 
 	var $the_answer;
 	var $submit;
 	var $score_left;
 	var $score_right;
 	var $math_container;
+	var $result;
 
 	$(document).ready(function () {
 		$the_answer = $("#the_answer");
@@ -28,6 +61,8 @@
 		$score_left = $("#score_left");
 		$score_right = $("#score_right");
 		$math_container = $("#math_container");
+		$the_min = $("#the_min");
+		$the_max = $("#the_max")
 
 		algorithm();
 		$the_answer.focus();
@@ -54,6 +89,7 @@
 			updateScore(1);
 		}
 		else {
+			algorithm();
 			wrong++;
 			updateScore(0);
 		}
@@ -61,11 +97,22 @@
 		$the_answer.focus();
 	}
 
+	function StopTest() {
+
+		//document.body.innerHTML = "";
+		alert("You got " + right + " correct and you got " + wrong + " incorrect");
+		right = 0;
+		wrong = 0;
+		$score_left.html("C: " + right);
+		$score_right.html("W: " + wrong);
+	}
+	the_stoptest = StopTest;
+
 	/**
 	 * Randomly generate table
 	 */
 	function algorithm() {
-		num1 = Math.floor(Math.random() * (10 - 6) + 6);
+		num1 = Math.floor(Math.random() * (max - min + 1) + min);
 		num2 = Math.floor(Math.random() * (10 - 1) + 1);
 		$math_container.html(num1 + " x " + num2);
 	}
@@ -83,4 +130,5 @@
 				$score_right.html("W: " + wrong);
 			}
 	}
+	window.setTimeout(StopTest, miliseconds);
 })();
