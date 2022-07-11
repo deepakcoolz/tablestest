@@ -78,10 +78,17 @@ var the_stoptest
 
 		//document.body.innerHTML = "";
 		alert("You got " + right + " correct and you got " + wrong + " incorrect");
-		right = 0;
-		wrong = 0;
-		$score_left.html("C: " + right);
-		$score_right.html("W: " + wrong);
+		var math_container = document.getElementById('math_container');
+		var answer = document.getElementById('answer');
+		var submit = document.getElementById('submit');
+		math_container.remove();
+		answer.remove();
+		submit.remove();
+		var div = document.createElement("div");
+		div.innerHTML = "You got " + right + " correct and you got " + wrong + " incorrect";
+
+		document.getElementById('title').appendChild(div)
+
 	}
 	the_stoptest = StopTest;
 
