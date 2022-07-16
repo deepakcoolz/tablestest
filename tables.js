@@ -13,6 +13,7 @@
 /** Holds functionality for the multiplication table */
 
 var the_stoptest
+var the_starttest
 
 
 (function () {
@@ -23,7 +24,7 @@ var the_stoptest
 	var wrong = 0;
 	var min = 6;
 	var max = 9;
-	var miliseconds = 60000
+	var miliseconds = 5000
 
 	var $the_answer;
 	var $submit;
@@ -31,6 +32,7 @@ var the_stoptest
 	var $score_right;
 	var $math_container;
 	var $result;
+
 
 	$(document).ready(function () {
 		$the_answer = $("#the_answer");
@@ -41,8 +43,9 @@ var the_stoptest
 		$the_min = $("#the_min");
 		$the_max = $("#the_max")
 
-		algorithm();
-		$the_answer.focus();
+
+		//algorithm();
+		//$the_answer.focus();
 
 		$submit.click(function () {
 			checkAnswer();
@@ -74,16 +77,32 @@ var the_stoptest
 		$the_answer.focus();
 	}
 
+	function StartTest() {
+		//document.body.innerHTML = "";
+		right = 0;
+		wrong = 0;
+		$score_left.html("C: " + right);
+		$score_right.html("W: " + wrong);
+
+
+		score_container.style.display = "block";
+		math_container.style.display = 'block';
+		answer.style.display = 'block';
+		submit.style.display = 'block';
+		algorithm();
+		$the_answer.focus();
+		setTimeout(StopTest, miliseconds);
+
+	}
+	the_starttest = StartTest;
+
 	function StopTest() {
 
-		//document.body.innerHTML = "";
 		alert("You got " + right + " correct and you got " + wrong + " incorrect");
-		var math_container = document.getElementById('math_container');
-		var answer = document.getElementById('answer');
-		var submit = document.getElementById('submit');
-		math_container.remove();
-		answer.remove();
-		submit.remove();
+		math_container.style.display = 'none';
+		answer.style.display = 'none';
+		submit.style.display = 'none';
+
 		var div = document.createElement("div");
 		div.innerHTML = "You got " + right + " correct and you got " + wrong + " incorrect";
 
@@ -114,5 +133,4 @@ var the_stoptest
 				$score_right.html("W: " + wrong);
 			}
 	}
-	window.setTimeout(StopTest, miliseconds);
 })();
