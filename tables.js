@@ -24,14 +24,14 @@ var the_starttest
 	var wrong = 0;
 	var min = 6;
 	var max = 9;
-	var miliseconds = 60000
+
 
 	var $the_answer;
 	var $submit;
 	var $score_left;
 	var $score_right;
 	var $math_container;
-	var $result;
+
 
 
 	$(document).ready(function () {
@@ -83,7 +83,10 @@ var the_starttest
 		wrong = 0;
 		$score_left.html("C: " + right);
 		$score_right.html("W: " + wrong);
-
+		$time_limit = $("#the_time_limit");
+		t = parseInt($time_limit.val());
+		miliseconds = t * 1000;
+		time_limit.style.display = 'none';
 
 		score_container.style.display = "block";
 		math_container.style.display = 'block';
@@ -105,7 +108,7 @@ var the_starttest
 
 		result.innerHTML = "You got " + right + " correct and you got " + wrong + " incorrect";
 		result.style.display = 'block';
-
+		time_limit.style.display = 'block';
 	}
 	the_stoptest = StopTest;
 
