@@ -2,11 +2,11 @@
  * Project:     Tables
  * Description: Education web mobile app that lets user practice his/her
  *              multiplication table skills.
- * Website:     http://ezraezraezra.com/class/woaa/class5/tables
+ * Website:     TBD
  * 
  * Original Author:      Ezra Velazquez
+ * Enhanced by:					Deepak Naresh
  * 
- * Website:     http://ezraezraezra.com
  * Date:        October 2011 (Originally developed February 2011)
  * 
  */
@@ -24,7 +24,7 @@ var the_starttest
 	var wrong = 0;
 	var min = 6;
 	var max = 9;
-	var miliseconds = 5000
+	var miliseconds = 60000
 
 	var $the_answer;
 	var $submit;
@@ -103,10 +103,8 @@ var the_starttest
 		answer.style.display = 'none';
 		submit.style.display = 'none';
 
-		var div = document.createElement("div");
-		div.innerHTML = "You got " + right + " correct and you got " + wrong + " incorrect";
-
-		document.getElementById('title').appendChild(div)
+		result.innerHTML = "You got " + right + " correct and you got " + wrong + " incorrect";
+		result.style.display = 'block';
 
 	}
 	the_stoptest = StopTest;
